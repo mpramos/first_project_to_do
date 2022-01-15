@@ -5,7 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-    <App saludo ="holi :'v "/>,
+  <App>
+    <p>holaaaaaaaaaaaaaaaaaaaaaaaa</p>
+  </App>  
+  ,
   document.getElementById('root')
 );
 

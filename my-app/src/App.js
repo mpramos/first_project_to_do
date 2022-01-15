@@ -16,7 +16,7 @@ function App(props) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {props.saludo}
+          {props.children}
         </a>
       </header>
     </div>
