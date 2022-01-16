@@ -6,7 +6,7 @@ import { CreateTodoButton } from "./CreateTodoButton";
 import {TodoSearch} from "./TodoSearch";
 // import './App.css';
 const todos = [
-  { text: "Ordenar el cuarto", completed: false },
+  { text: "Ordenar el cuarto", completed: true },
   { text: "Limpiar la cocina", completed: false },
   { text: "Lavar la ropa", completed: false },
 ];
@@ -19,7 +19,10 @@ function App(props) {
       <TodoList>
         {/* se va a renderizar cada uno de mis todo-Item, desde mi array todos */}
         {todos.map((todo) => (
-          <TodoItem key={todo.text} text={todo.text} />
+          <TodoItem 
+          key={todo.text}
+          text={todo.text}
+          completed={todo.completed} />
         ))}
       </TodoList>
       <CreateTodoButton />
