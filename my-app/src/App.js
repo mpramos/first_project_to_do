@@ -18,21 +18,11 @@ function App() {
   const completedTodos = todos.filter(todo=>!!todo.completed).length;
   const totalTodos= todos.length;
   let searchedTodos =[];
-  // vamos a preguntar si han escrito algo en nuestra searchValue
   if(!searchValue.length >=1){
-    // por if, vamos a mostrar todos los TODOS
     searchedTodos=todos;
   }else{
-    // convertimos a minusculas
-    // filtramos el texto que escribimos en nuestro input de busqueda
-    searchedTodos=todos.filter(todo=> {
-      const todoText = todo.text.toLowerCase();
-      const searchText = searchValue.toLowerCase();
-      // se evalua si son iguales y si es asi se retorna del metodo filter
-      return todoText.includes(searchText);
-    });
+    searchedTodos=todos.filter(todo=> (todo.text.toLowerCase().includes(searchValue.toLowerCase())));
   }
-
   return (
     <React.Fragment>
       <TodoCounter 
