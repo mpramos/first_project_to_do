@@ -23,6 +23,17 @@ function App() {
   }else{
     searchedTodos=todos.filter(todo=> (todo.text.toLowerCase().includes(searchValue.toLowerCase())));
   }
+  const completeTodos = (text) => { // text es identificador de cada todo
+    // extraemos la posicion del todo completado para poder hacer lo que quedramos con el(ejemplo:eliminarlo)
+    const todoIndex = todos.findIndex(todo => todo.text == text)
+    //SEGUNDA ALTERNATIVA
+    todos[todoIndex].completed=true;
+    // PRIMERA ALTERNATIVA
+    // todos[todoIndex] = {
+    //   text : todos[todoIndex].text,
+    //   completed: true ,
+    // };
+  }
   return (
     <React.Fragment>
       <TodoCounter 
