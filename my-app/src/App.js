@@ -5,19 +5,33 @@ import { TodoItem } from "./TodoItem";
 import { CreateTodoButton } from "./CreateTodoButton";
 import {TodoSearch} from "./TodoSearch";
 // import './App.css';
-const todos = [
+// creamos una lista por defecto por mientras
+const defaultTodos = [
   { text: "Ordenar el cuarto", completed: true },
-  { text: "Limpiar la cocina", completed: false },
+  { text: "Limpiar la cocina", completed: true },
   { text: "Lavar la ropa", completed: false },
+  {text: "Lavar los platos", completed: false}
 ];
-function App(props) {
+function App() {
+  // creamos un hook de estados para guardar nuestras listas de tareas  en todos 
+  const [todos, setTodos]= React.useState(defaultTodos)
+  // creamos un hook de estado para mandar como prop al componenteSetSearch 
+  const [searchValue,setSearchValue] = React.useState('')
+  // completedTodos cuenta los todos completados 
+  const completedTodos = todos.filter(todo=>!!todo.completed).length;
+  // cuenta el total de todos
+  const totalTodos= todos.length
   return (
-    // <React.Fragment> es una etiqueta invisible se usa para envolver varias etiquetas
     <React.Fragment>
-      <TodoCounter />
-      <TodoSearch />
+      <TodoCounter 
+       totalTodos={totalTodos}
+       completedTodos={completedTodos}
+      />
+      <TodoSearch
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
       <TodoList>
-        {/* se va a renderizar cada uno de mis todo-Item, desde mi array todos */}
         {todos.map((todo) => (
           <TodoItem 
           key={todo.text}
