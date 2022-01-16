@@ -13,14 +13,26 @@ const defaultTodos = [
   {text: "Lavar los platos", completed: false}
 ];
 function App() {
-  // creamos un hook de estados para guardar nuestras listas de tareas  en todos 
   const [todos, setTodos]= React.useState(defaultTodos)
-  // creamos un hook de estado para mandar como prop al componenteSetSearch 
   const [searchValue,setSearchValue] = React.useState('')
-  // completedTodos cuenta los todos completados 
   const completedTodos = todos.filter(todo=>!!todo.completed).length;
-  // cuenta el total de todos
-  const totalTodos= todos.length
+  const totalTodos= todos.length;
+  let searchedTodos =[];
+  // vamos a preguntar si han escrito algo en nuestra searchValue
+  if(!searchValue.length >=1){
+    // por if, vamos a mostrar todos los TODOS
+    searchedTodos=todos;
+  }else{
+    // convertimos a minusculas
+    // filtramos el texto que escribimos en nuestro input de busqueda
+    searchedTodos=todos.filter(todo=> {
+      const todoText = todo.text.toLowerCase();
+      const searchText = searchValue.toLowerCase();
+      // se evalua si son iguales y si es asi se retorna del metodo filter
+      return todoText.includes(searchText);
+    });
+  }
+
   return (
     <React.Fragment>
       <TodoCounter 
@@ -32,7 +44,7 @@ function App() {
         setSearchValue={setSearchValue}
       />
       <TodoList>
-        {todos.map((todo) => (
+        {searchedTodos.map((todo) => (
           <TodoItem 
           key={todo.text}
           text={todo.text}
