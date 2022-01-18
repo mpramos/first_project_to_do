@@ -11,7 +11,7 @@ const TodoItem = (props) => {
         <li className="TodoItem">
         <span 
         className={`Icon Icon-check ${props.completed && 'Icon-check--active'}`}
-        onClick={onComplete}
+        onClick={props.onComplete} // estamos llamando a esa funcion cada que le damos onClick de la linea 52 del App.js
         >
           √
         </span>

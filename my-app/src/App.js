@@ -15,6 +15,7 @@ const defaultTodos = [
 function App() {
   const [todos, setTodos]= React.useState(defaultTodos)
   const [searchValue,setSearchValue] = React.useState('')
+  // filtramos en una array las tareas o todos completados 
   const completedTodos = todos.filter(todo=>!!todo.completed).length;
   const totalTodos= todos.length;
   let searchedTodos =[];
@@ -23,16 +24,14 @@ function App() {
   }else{
     searchedTodos=todos.filter(todo=> (todo.text.toLowerCase().includes(searchValue.toLowerCase())));
   }
-  const completeTodos = (text) => { // text es identificador de cada todo
-    // extraemos la posicion del todo completado para poder hacer lo que quedramos con el(ejemplo:eliminarlo)
+  const completeTodos = (text) => { 
     const todoIndex = todos.findIndex(todo => todo.text == text)
-    //SEGUNDA ALTERNATIVA
-    todos[todoIndex].completed=true;
-    // PRIMERA ALTERNATIVA
-    // todos[todoIndex] = {
-    //   text : todos[todoIndex].text,
-    //   completed: true ,
-    // };
+    // crear una [nueva lista] de TODOS para enviarle el cambio de los todos 
+    // no olvidemos que debemos setear los todos en const [todos, setTodos]
+    const newTodos = [...todos]; // con el spread Operator inyectamos a la [nueva lista] todos los elementos de la lista [todo]
+    newtodos[todoIndex].completed=true;// marcamos con true ese todo que cumple con la condicion de tener el mismo texto
+    setTodos(newTodos);//vamos a causar un rerender donde vamos a enviar los nuevos cambios en la nueva lista
+  
   }
   return (
     <React.Fragment>
@@ -49,7 +48,9 @@ function App() {
           <TodoItem 
           key={todo.text}
           text={todo.text}
-          completed={todo.completed} />
+          completed={todo.completed}
+          onComplete={()=>completeTodos(todo.text)}// llama a nuestra funcion de la linea 27 y le manda el texto de ese todo
+          />
         ))}
       </TodoList>
       <CreateTodoButton />
