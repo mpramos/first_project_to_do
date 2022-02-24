@@ -27,6 +27,12 @@ function App(props) {
       return todoText.includes(searchText);
     })
   }
+const completeTodos =(text)=>{
+    const todoIndex= todos.findIndex(todo =>todo.text == text);
+    const newTodos = [...todos]
+    newTodos[todoIndex].completed = true;
+    setTodos(newTodos);
+    }
 
   return (
     <>
