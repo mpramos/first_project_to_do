@@ -1,0 +1,7 @@
+TodoCounter => Contador de los to-dos
+TodoSearch => Buscador de los to-dos
+TodoList => Lista de to-dos
+TodoItem => componente to-do
+CreateTodoButton => abre un nuevo Modal para crear  nuevos botones
+onChange => escucha los cambios dentro del INPUT
+event.target.value = > atrapa el valor del input
