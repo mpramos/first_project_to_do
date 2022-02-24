@@ -7,16 +7,22 @@ import { TodoItem } from "./TodoItem";
 import {TodoList} from "./TodoList";
 import { TodoSearch } from "./TodoSearch";
 
-const todos = [
+const defaulttodos = [
   { text: "cortar cebolla", completed: false },
   { text: "tomar el curso de react", completed: true },
   { text: "llorar con la llorona", completed: false },
 ];
 function App(props) {
+  const [todos, setTodos] = React.useState(defaulttodos)
+  const [searchvalue, setSearchValue]= React.useState('') 
   return (
     <>
       <TodoCounter />
-      <TodoSearch />
+      <TodoSearch
+        searchvalue ={searchvalue}
+        setSearchValue ={setSearchValue}
+    
+      />
       <TodoList>
         {todos.map((todo) => (
           <TodoItem key={todo.text} text = {todo.text} completed ={todo.completed}/>
